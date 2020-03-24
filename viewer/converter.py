@@ -22,8 +22,10 @@ class Converter:
                 addr = conversation[0]['address'].replace(' ', '')
             except KeyError:
                 addr = ','.join(conversation[0]['addresses']).replace(' ', '')
-
-            outfile = Path(f'{addr}.html')
+            
+            htmlExtension = ".html"
+            maxFilenameLength = 100
+            outfile = Path(addr[:(maxFilenameLength-len(htmlExtension))] + htmlExtension)
 
             hconv = self.build_conversation(conversation)
 
